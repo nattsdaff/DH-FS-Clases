@@ -1,0 +1,85 @@
+/* CSS RESET */
+*{
+  box-sizing: border-box;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+p{
+  margin: 0;
+}
+/* CONTENIDO PAGINA */
+body{
+/*Pueso RESETEAR el font por default a 10px para que sea más fácil luego manejar los em*/
+font-size: 10px;
+font-family: "Montserrat", helvetica,sans-serif;
+}
+h1{
+  font-size: 3em;
+  /*Para probar, usamos el fixed px*/
+  font-size: 32px;
+}
+h2{
+  font-size: 2.5em;
+  /*Para probar, usamos el fixed px*/
+  /* font-size: 32px;  */
+}
+h1{
+  font-weight: 600;
+}
+h2{
+  font-size: 2.8em;
+}
+p{
+  font-size: 1.3em;
+}
+header{
+  height: 20vh;
+  background-color: lightgrey;
+  border: 2px solid black;
+}
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 5px dotted red;
+}
+section{
+  overflow: hidden;
+}
+article.caja-a{
+  background-color: green;
+  border: 2px solid black;
+}
+article.caja-b{
+  background-color: lightgreen;
+  border: 2px solid black;
+}
+article.caja-c{
+  background-color: darkgreen;
+  border: 2px solid black;
+}
+p strong{
+  font-size: 1.5em;
+}
+@media (min-width:600px) {
+  article.caja-a{
+    width: 20.83%;
+    float: left;
+  }
+  article.caja-b{
+    width: 66.66%;
+    float: left;
+    margin: 0 2.08%;
+  }
+  article.caja-c{
+    width: 8.33%;
+    float: left;
+  }
+}

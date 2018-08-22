@@ -1,0 +1,94 @@
+/* CSS RESET */
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+ul{
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+p{
+  margin: 0;
+}
+body{
+  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  color: #444;
+  font-weight: 300;
+  line-height: 1.6em;
+
+}
+header{
+  margin-bottom: 30px;
+  padding-top: 50px;
+  background-color: #999;
+  border-bottom: 1px solid #666;
+}
+/* MAIN */
+nav{
+  width: 30%;
+  float: left;
+  background-color: #888;
+}
+nav a:link, nav a:hover{
+  font-weight: 300;
+}
+main{
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #888;
+}
+section.carta-container{
+  width: 70%;
+  float: left;
+  padding-left: 20px;
+  border-left: 1px solid #666;
+}
+h1{
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+h2{
+  font-size: 1.7em;
+}
+h3{
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+a:link, a:hover{
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+li a{
+  text-decoration: none;
+  color: #000;
+}
+.container{
+  width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.foto-carta{
+  float: right;
+  margin-bottom: 10px;
+  border: 1px solid lightgrey;
+}
+.platos-group{
+  margin-left: 20px;
+}
+.platos-item{
+  margin-bottom: 20px;
+}
+.footer-logo{
+  width: 200px;
+}
+footer{
+  background-color: #ccc;
+  padding: 30px;
+  margin: 0 auto;
+  border-top: 1px solid grey;
+  clear: both;
+}

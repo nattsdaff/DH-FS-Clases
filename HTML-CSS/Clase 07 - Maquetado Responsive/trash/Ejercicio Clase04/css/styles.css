@@ -1,0 +1,66 @@
+/* CSS RESET */
+*{
+  box-sizing: border-box;
+}
+ul{
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+p{
+  margin: 0;
+}
+body{
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+  width: 90%;
+  margin: 0 auto;
+
+}
+header{
+  padding: 30px;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-bottom: 1px solid #666;
+}
+/* MAIN */
+nav{
+  width: 30%;
+  padding: 30px;
+  float: left;
+  background-color: #888;
+}
+main{
+}
+section{
+  width: 70%;
+  float: left;
+  padding-left: 20px;
+  border-left: 1px solid #666;
+}
+h1{
+  font-size: 2em;
+}
+h2{
+  font-size: 1.3em;
+}
+li a{
+  text-decoration: none;
+  color: #000;
+  line-height: 1.7em;
+}
+.item-name{
+  font-weight: bold;
+  display: block;
+}
+.footer-logo{
+  width: 200px;
+}
+footer{
+  background-color: #ccc;
+  padding: 30px;
+  clear: both;
+}

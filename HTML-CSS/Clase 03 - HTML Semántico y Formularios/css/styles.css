@@ -1,0 +1,48 @@
+body{
+  font-family: helvetica, Geneva, sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+}
+main{
+    width: 700px;
+}
+h1{
+ font-size: 37px;
+ line-height: 48px;
+ font-family: inherit;
+ color: #000000;
+}
+h2{
+ font-size: 25px;
+ line-height: 38px;
+ color: #000000;
+}
+h3{
+  font-size: inherit;
+  color: #666;
+}
+p{
+  color:#333;
+  line-height: 27px;
+  font-size: inherit;
+}
+.fotitos{
+  width: 90%;
+}
+.fotoboton{
+  width: 10%;
+}
+textarea{
+  resize: horizontal;
+  width: 90%;
+}
+.botonenviar, .reset{
+  border: none;
+  background-color: green;
+  text-align: left;
+  border-radius: 5px;
+}
+.reset-bold{
+  font-weight: bold;
+  background-color: red;
+}

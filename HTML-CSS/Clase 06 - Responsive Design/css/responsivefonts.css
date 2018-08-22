@@ -1,0 +1,20 @@
+body{
+/*Pueso RESETEAR el font por default a 10px para que sea más fácil luego manejar los em*/
+font-size: 10px;
+}
+h1{
+  font-size: 3em;
+  /*Para probar, usamos el fixed px*/
+  font-size: 32px;
+}
+h2{
+  font-size: 2.5em;
+  /*Para probar, usamos el fixed px*/
+  /* font-size: 32px;  */
+}
+p{
+  font-size: 1.6em;
+}
+.container{
+  max-width: 1200px;
+}

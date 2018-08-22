@@ -1,0 +1,123 @@
+/* CSS RESET */
+/*Pueso RESETEAR el font por default a 10px para que sea más fácil luego manejar los em*/
+body{
+  font-size: 10px;
+}
+ul, ol{
+  padding: 0
+}
+li{
+  list-style-type: none;
+}
+*{
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+
+
+/*GENERALES*/
+body{
+  font-family: "Montserrat",sans-serif;
+  background-image: url("../images/bg-body.png")
+}
+.container{
+  background-image: url("../images/bg-body.png");
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/*CABECERA*/
+.main-header, .main-footer{
+  text-align: center;
+}
+.logo{
+  border-radius: 90px;
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+.toggle-nav{
+  display: inline-block;
+  width: 100%; /* DEBO PONERLE ANCHO PORQUE ES INLINE CONVERTIDO A BLOCK, NO ES UN BLOCK QUE OCUPA 100%*/
+  margin-left: 20px 0px:
+}
+.toggle-nav span{
+  background-color: #444;
+  color: #fff;
+  padding: 5px 10px;
+}
+.main-nav li, .main-footer li{
+  background-color: black;
+  margin-bottom: 2px;
+}
+.main-nav a, .main-footer a{
+  text-transform: uppercase;
+  color: white;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1.3em;
+}
+
+/*  B A N N E R  */
+.banner{
+  display: none;
+}
+
+/*PRODUCTOS*/
+article.product img{
+  width: 100%;
+}
+article.product{
+  margin-bottom:30px;
+}
+article.product a{
+  display: inline-block; /*NO HIZO FALTA PONERLE WIDTH PORQUE TOMA EL DEL TEXTO*/
+  padding: 10px 15px;
+  color: white;
+  background-color: #444;
+}
+
+@media (min-width:768px) {
+  .container{
+    max-width: 720px;
+  }
+  .toggle-nav{
+    display: none;
+  }
+  .main-nav ul{
+    overflow: hidden;
+  }
+  .main-nav li{
+    width: 15.25%;
+    float: left;
+    margin-left: 1.69%;
+  }
+  .main-nav li:first-child{
+    margin-left: 0px;
+  }
+  section.banner{
+    display:block;
+    margin-bottom: 30px;
+  }
+  section{
+    overflow: hidden;
+  }
+  vip-products{
+    overflow: hidden;
+  }
+  article.product{
+    width: 32.20%;
+    float: left;
+    margin-right: 1.69%;
+  }
+  article.product:nth-child(3n){
+    margin-right: 0;
+  }
+ }
+ @media (min-width:1200px) {
+   .container{
+     max-width: 1180px;
+   }
+ }

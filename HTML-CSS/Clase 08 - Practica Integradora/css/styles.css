@@ -1,0 +1,72 @@
+/* CSS RESET */
+*{
+  box-sizing: border-box;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+p{
+  margin: 0;
+}
+body{ /* font-size RESET */
+  font-size: 10px;
+  margin: 0px;
+}
+
+/* GENERALES */
+body{
+  background-color: #F0EFE7;
+  font-family: "Yanone Kaffeesatz", "Open Sans";
+  color: #444;
+}
+
+/* HEADER */
+.main-header{
+  background-color: #c33221;
+  border-top: 1px solid #b20000;
+  border-bottom: 1px solid #b20000;
+  color: #fff;
+  margin-bottom: 10px;
+}
+}
+.main-header .main-nav {
+    max-width: 1170px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 10px;
+}
+.logo{
+  width: 120px;
+  float: left;
+}
+.menu{
+  display: none;
+}
+.menu-xs{
+  display: block;
+  float: left;
+}
+
+.fa-bars:before {
+  font-family: "fontAwesome";
+  content: "\f0c9";
+}
+.login{
+  float: right;
+  width: 200px;
+}
+.login ul{
+  overflow: hidden;
+}
+.login ul li{
+  float: left;
+  margin-left: 5%;
+  text-transform: uppercase;
+}

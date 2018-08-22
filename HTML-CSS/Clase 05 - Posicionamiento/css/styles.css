@@ -1,0 +1,107 @@
+/* CSS RESET */
+*{
+  box-sizing: border-box;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+p{
+  margin: 0;
+}
+
+/* CONTENIDO */
+body{
+  background: url("../img/bg-2.png") right top;
+  font-family: "montserrat",Helvetica,sans-serif;
+}
+header{
+
+  position: fixed;
+  top:0;
+  z-index: 1000;
+  width: 960px;
+}
+nav{
+  width:100%;
+  height: 60px;
+  padding: 20px 0 20px 80px;
+  position: relative;
+  margin-top: 60px;
+}
+main{
+      margin-top: 180px;
+}
+li{
+  float: left;
+  padding-left: 20px;
+}
+a:link, a:hover, a:visited{
+  color: #fff;
+}
+section{
+  background-color: #fff;
+  padding: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-bottom: 300px;
+}
+.header-logo{
+  position: absolute;
+  top: 0;
+  left: -40px;
+  z-index: 1000;
+  margin-top: 40px;
+}
+.fixeds{
+  position: fixed;
+}
+.center{
+  text-align: center;
+}
+.main-menu{
+  background-color: red;
+  overflow: hidden;
+}
+.container{
+  width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+/*PRODUCTO*/
+article.product-article{
+  float: left;
+  position: relative;
+  width: 300px;
+  margin: 5px;
+}
+.product-flag{
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.product-title{
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  position: absolute;
+  top:40%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  padding: 5px 0;
+  left:50%;
+}
+.product-article a {
+  color:#fff;
+  padding: 5px 10px;
+  background: rgba(255, 0, 0, 0.9);
+  position:absolute;
+  bottom:2px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
