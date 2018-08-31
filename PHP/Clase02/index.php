@@ -116,7 +116,7 @@
           break;
       }
     ?>
-    <h2>Punto 10 - </h2>
+    <h2>Punto 10 - test </h2>
     <?php
       $arraycolores = ["Rojo","Azul","Amarillo","violeta","naranja"];
       $selector = rand(0,4);
