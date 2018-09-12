@@ -1,0 +1,13 @@
+body{
+  font-family: "Helvetica neue", sans-serif;
+}
+h1{
+  text-decoration:underline;
+  font-weight: bold;
+}
+p{
+  font-size: 1em;
+}
+select, option {
+    width: 300px;
+}
