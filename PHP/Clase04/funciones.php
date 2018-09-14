@@ -8,7 +8,13 @@
     <h1>PHP - Clase 04</h1>
     <h2>Punto 1</h2>
     <?php
+    ////////////////////////// PHP Clase 04 - Punto 1 //////////////////////////
+    $funcionesEjecutadas = 0;
       function mayor($num1, $num2, $num3){
+        //BEGIN punto 6 del ejercicio clase08
+        global $funcionesEjecutadas;
+        $funcionesEjecutadas++;
+        //END OF punto 6 clase08
         $maxNumber = max($num1,$num2,$num3);
         return $maxNumber; //tengo que usar RETURN para poder acceder a maxNumber desde afuera, RETORNA un valor para $maxNumber
       }
@@ -20,15 +26,22 @@
     <br>
     <h2>Punto 2</h2>
     <?php
+    ////////////////////////// PHP Clase 04 - Punto 2 //////////////////////////
     echo "<br>";
     echo "Una forma de hacerlo<br>";
     echo "<br>";
     function tabla($base,$limite){
+      //BEGIN punto 6 del ejercicio clase08
+      global $funcionesEjecutadas;
+      $funcionesEjecutadas++;
+      //END OF punto 6 clase08
       $arrayNumeros = [];
       for ($i=$base; $i <= $limite; $i++) {
         $arrayNumeros[] = $i;
       }
       return $arrayNumeros;
+      var_dump($arrayNumeros);
+
     }
     $arraydenumeros= tabla(1,19);
     var_dump($arraydenumeros);
@@ -36,7 +49,12 @@
     echo "<br>";
     echo "Otra forma de hacerlo";
     echo "<br>";
+
     function tabla2($base,$limite){
+      //BEGIN punto 6 del ejercicio clase08
+      global $funcionesEjecutadas;
+      $funcionesEjecutadas++;
+      //END OF punto 6 clase08
       $arrayNumeros = range($base,$limite);
       return $arrayNumeros;
     }
@@ -55,6 +73,10 @@
     <?php
       $numeroMagico = 12; // es variable GLOBAL
       function mayor2($num1, $num2, $num3=""){
+        //BEGIN punto 6 del ejercicio clase08
+        global $funcionesEjecutadas;
+        $funcionesEjecutadas++;
+        //END OF punto 6 clase08
         $maxNumber = max($num1,$num2,$num3);
         return $maxNumber; //tengo que usar RETURN para poder acceder a maxNumber desde afuera, RETORNA un valor para $maxNumber
       }
@@ -67,6 +89,11 @@
    <h2>Punto 4</h2>
    <?php
      function tabla3($base,$limite){
+       //BEGIN punto 6 del ejercicio clase08
+       global $funcionesEjecutadas;
+       $funcionesEjecutadas++;
+       //END OF punto 6 clase08
+
        $arrayNumeros = range($base,$limite);
        return $arrayNumeros;
      }

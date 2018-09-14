@@ -1,4 +1,6 @@
 <?php
+////////////////////////// PHP Clase 04 - Punto 3 //////////////////////////
+
   echo "Hola Mundo";
   echo "<br>";
   //require("incluir.php");//REQUIRE requiere que el archivo esté. Si no está tira error.Ahi el archivo CORTA y no sigue.

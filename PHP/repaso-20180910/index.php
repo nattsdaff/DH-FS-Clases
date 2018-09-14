@@ -1,71 +1,53 @@
-<p> <a href="get-post.php">ir a repaso $_GET y $_POST</a></p>
-<?php
-$texto = "cadena de texto";
-$number = 1;
-$boolean = true;
-$arrays = [1,2,43,5,"hola", "adios"];
-$productos = [
-  "nombre" => "Ale",
-  "apellido" => "Vivone",
-  "edad" => "?",
-  "colores" =>[
-              "uno"=>"rojo",
-              "dos"=>"amarillo",
-              "tres"=>"verde"]
-];
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
 
-var_dump($arrayAsociativo["colores"]["dos"]);
+    <?php
+    $texto = "cadena de texto - string";
+    $number = 1;
+    $boolean = true;
 
-echo "$texto  $number  $boolean";
-echo "<br>";
-echo "<pre>";
-var_dump($arrays);
-// var_dump($arrayAsociativo);
+    //los arrays en php pueden ser NUMERICOS o ASOCIATIVOS
+    $arraynumerico = [1,2,3,4,"hola", "chau"];
+    $arrayasociativo = [
+      "nombre" => "Ale", //-->acá va COMA, NO punto y coma.
+      "apellido" => "Vivone",
+      "edad" => "no sabe",
+      "colores" => [
+        "uno" => "rojo",
+        "dos" => "azul",
+        "tres" => "amarillo"
+        ]
+    ]
+    // muestra todo menos ARRAYS
+  //  echo $texto, $number, $boolean;
+    echo "<br>";
+    //para ARRAYS se usa var_dump
+    var_dump $arraynumerico;
+    echo "<br>";
+    var_dump $arrayasociativo;
 
-// for ($i=0; $i <count($arrayAsociativo) ; $i++) {
-//   echo "$arrayAsociativo[$i] <br>";
-// }
-foreach ($productos as $nombre => $descripcion) {
-  if ($nombre === "colores") {
-    foreach ($productos[$nombre] as $posicion => $descripcion){
-      echo "$descripcion <br>";
+    //el FOR no sirve para arrays asociativos porque recorre posiciones númericas, no de texto.
+    for ($i=0; $i < 10; $i++) {
+      echo "$i <br>";
+    }
+    for ($i=0; $i < count($arrayasociativo); $i++) {
+      echo "$arrayasociativo[$i] <br>";
+    }
+    //puedo NO PONER el $key, solo con $value funciona. Si dejo solamente $clave, interpreta que en realidad traigo $datos.
+    //foreach ($arrayasociativo as $value) {
+    foreach($arrayasociativo as $clave => $datos){//esto puede ser $nombre => descripcion... es aleatorio, uso las palabras que me faciliten la visual, lo importante es que va a ver el key y value.
+      if($clave === "colores"){
+        foreach ($arrayasociativo[$clave] as $color) {
+          echo "$color <br>";
+        }else{
+          echo "$clave: $datos <br>";
+          }
       }
-    }  else {
-      echo "$nombre: $descripcion <br>";
-  }
-}
-
-$cantantes = [
-  "Luis" => "Miguel",
-  "Charly" => "Garcia"
-];
-
-$variableGlobal = "hola Global";
-
-function miFuncion(){
-  $variableLocal = "hola Local";
-  global $variableGlobal;
-  echo $variableGlobal;
-  echo "<br>";
-  echo $variableLocal;
-  echo "<br>";
-}
-echo "<br>";
-$resultado = miFuncion();
-echo "<br>";
-echo $resultado;
-echo "<br>";
-echo "============================================";
-echo "<br>";
-echo $variableGlobal;
-
-
-
-
-
-
-
-
-
-
-?>
+     ?>
+  </body>
+</html>

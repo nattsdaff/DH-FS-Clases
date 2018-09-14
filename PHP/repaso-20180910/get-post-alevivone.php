@@ -1,8 +1,7 @@
 <?php
-echo '<p> Array de $_GET. <br>
-Para probarlo, se completa con query strings en la url. <br>
-Ej: http://localhost/get-post.php?nombre=alejandro&apellido=vivone <br>
-En cirucmnstancia de proyecto, el query string ser genera desde un formulario con method="GET".</p>';
+echo '<h1>$_GET</h1><h2> Array de $_GET. </h2>
+
+<p><strong>Se genera desde un formulario con method="GET".</strong></p><p>Para probarlo, se completa con query strings en la url: http://localhost/get-post.php?nombre=alejandro&apellido=vivone </p>';
 var_dump($_GET);
 echo "<p> =================================== </p>";
 echo '<p> Array de $_POST. <br>
