@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <?php
-//	require "funciones.php";
+	require "funciones.php";
 	if ($_POST) {
-//		$errores= validar($_POST);
-		$nombre=$_POST["nombre"];
-		$apellido=$_POST["apellido"];
-		$username=$_POST["username"];
-		$email=$_POST["email"];
-		$sexo=$_POST["genero"];
-		$diaFecha=$_POST["fnac_dia"];
-		$mesFecha=$_POST["fnac_mes"];
-		$anioFecha=$_POST["fnac_anio"];
-		$categorias=$_POST["categorias"];
-		$term=$_POST["terminos"];
-		var_dump($errores);
+		$errores= validar($_POST);
+		if (empty($errores)) {
+			registrarUsuario($_POST);
+		}
+		isset($_POST["nombre"])?$nombre=$_POST["nombre"]:'';
+		isset($_POST["apellido"])?$apellido=$_POST["apellido"]:'';
+		isset($_POST["username"])?$username=$_POST["username"]:'';
+		isset($_POST["email"])?$email=$_POST["email"]:'';
+		isset($_POST["email_confirm"])?$email_confirm=$_POST["email_confirm"]:'';
+		isset($_POST["genero"])?$sexo=$_POST["genero"]:'';
+		isset($_POST["fnac_dia"])?$diaFecha=$_POST["fnac_dia"]:'';
+		isset($_POST["fnac_mes"])?$mesFecha=$_POST["fnac_mes"]:'';
+		isset($_POST["fnac_anio"])?$anioFecha=$_POST["fnac_anio"]:'';
+		isset($_POST["categorias"])?$categorias=$_POST["categorias"]:'';
+		isset($_POST["terminos"])?$terminos=$_POST["terminos"]:'';
+		//var_dump($errores);
 	}
  ?>
 <html lang="en">
@@ -53,7 +57,7 @@
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</div>
-		</div>(!empty($nombre))?$nombre:''; ?
+		</div>
 	</nav>
 	<div class="container">
 		<div class="row">
@@ -136,18 +140,13 @@
 						</div>
 						<div class="col-sm-4">
 							<select class="form-control" name="fnac_mes">
-								<option value="1">Enero</option>
-								<option value="2">Febrero</option>
-								<option value="3">Marzo</option>
-								<option value="4">Abril</option>
-								<option value="5">Mayo</option>
-								<option value="6">Junio</option>
-								<option value="7">Julio</option>
-								<option value="8">Agosto</option>
-								<option value="9">Septiembre</option>
-								<option value="10">Octubre</option>
-								<option value="11">Noviembre</option>
-								<option value="12">Diciembre</option>
+								<?php for ($i=1; $i < 13; $i++) {
+									if(isset($mesFecha)&&$mesFecha==$i){
+										echo "<option selected value=$i>$i</option>";
+									}else{
+										echo "<option value=$i>$i</option>";
+									}
+								} ?>
 							</select>
 						</div>
 						<div class="col-sm-4">
@@ -186,10 +185,12 @@
 								}?> value="3"> Historia
 							</label>
 						</div><div class="checkbox">
-							<label>
-								<input type="checkbox" name="categorias[]" <?php if (isset($categorias)&&in_array("4",$categorias)) {
-									echo "checked";
-								}?> value="4"> Ciencias
+							<label><?php
+									if (isset($categorias)&&in_array("4",$categorias)) {
+										echo "<input type='checkbox' name='categorias[]' 'checked' value="4">Ciencias";
+									}else{
+										echo "<input type='checkbox' name='categorias[]' value="4">Ciencias";
+									}
 							</label>
 						</div>
 					</div>
@@ -203,7 +204,7 @@
 						<input type="checkbox" id="chk-terminos" name="terminos"> Acepto los términos y condiciones
 					</label>
 				</div>
-				<input type="submit" name="btn_submit" class="btn btn-info" value="Registrarme"/>
+				<input type="submit" name="" class="btn btn-info" value="Registrarme"/>
 			</form>
 		</div>
 	</div>
