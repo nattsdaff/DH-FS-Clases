@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <?php
-//	require "funciones.php";
-if($_POST){ //SI EXISTE UN POST
-	//		$errores= validar($_POST);
+	//1. if($_POST) --> Si hubo un $_POST, le asigno el valor del post[] a una variable. Una por campo, checkbox, radio, etc.
+	//2. persistencia de datos en cada campo
+	//3.require archivo funciones donde voy a validar
+	//4.Corro la funcion "validar" dentro del if($_POST) SOLO para ver los errores. La funcion validar solo quiere saber si hubo error, o sea, si esta mal el campo.
+	require "funciones.php";
+
+if($_POST){ //SI EXISTE UN POST, asigno el valor del campo a una $variable
+	$errores= validar($_POST);
 	isset($_POST["nombre"])?$nombre=$_POST["nombre"]:"";
 	isset($_POST["apellido"])?$apellido=$_POST["apellido"]:"";
 	isset($_POST["username"])?$username=$_POST["username"]:"";
@@ -13,7 +18,10 @@ if($_POST){ //SI EXISTE UN POST
 	isset($_POST["fnac_anio"])?$anioFecha=$_POST["fnac_anio"]:"";
 	isset($_POST["categorias"])?$categorias=$_POST["categorias"]:"";
 	isset($_POST["terminos"])?$term=$_POST["terminos"]:"";
+	isset($_POST["contrasena"])?$contrasena=$_POST["contrasena"]:'';
+	isset($_POST["contrasena_confirm"])?$contrasena_confirm=$_POST["contrasena_confirm"]:'';
 	//	var_dump($errores);
+
 	};
  ?>
 <html lang="en">
@@ -107,7 +115,7 @@ if($_POST){ //SI EXISTE UN POST
 						<label class="radio-inline">
 							<input type="radio" name="genero" id="genero_femenino"
 								<?php
-									if(isset($sexo)&&$sexo==1) {
+									if(isset($genero)&&$genero==1) {
 										echo "checked";
 									} ?>
 									value="1"> Femenino
@@ -115,7 +123,7 @@ if($_POST){ //SI EXISTE UN POST
 						<label class="radio-inline">
 							<input type="radio" name="genero" id="genero_masculino"
 							<?php
-									if (isset($sexo)&&$sexo==2) {
+									if (isset($genero)&&$genero==2) {
 										echo "checked";
 									} ?>
 									value="2"> Masculino
@@ -129,87 +137,39 @@ if($_POST){ //SI EXISTE UN POST
 							<select class="form-control" name="fnac_dia">
 								<?php
 									for ($i=1; $i < 32 ; $i++) {
-										if(isset($fnac_dia)&&$fnac_dia==$i){
+										if(isset($diaFecha)&&$diaFecha==$i){
 											echo "<option selected value=$i>$i</option>";
 										}else{
 											echo "<option value=$i>$i</option>";
 										}
 									}
 								 ?>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>
-								<option value="25">25</option>
-								<option value="26">26</option>
-								<option value="27">27</option>
-								<option value="28">28</option>
-								<option value="29">29</option>
-								<option value="30">30</option>
-								<option value="31">31</option>
 							</select>
 						</div>
 						<div class="col-sm-4">
 							<select class="form-control" name="fnac_mes">
-								<option value="1">Enero</option>
-								<option value="2">Febrero</option>
-								<option value="3">Marzo</option>
-								<option value="4">Abril</option>
-								<option value="5">Mayo</option>
-								<option value="6">Junio</option>
-								<option value="7">Julio</option>
-								<option value="8">Agosto</option>
-								<option value="9">Septiembre</option>
-								<option value="10">Octubre</option>
-								<option value="11">Noviembre</option>
-								<option value="12">Diciembre</option>
+								<?php
+								for ($i=1; $i < 13 ; $i++) {
+									if(isset($mesFecha)&&$mesFecha<$i){
+										echo "<option selected value=$i>$i</option>";
+									}else{
+										echo "<option value=$i>$i</option>";
+									}
+								}
+								?>
 							</select>
 						</div>
 						<div class="col-sm-4">
 							<select class="form-control" name="fnac_anio">
-								<option value="2017">2017</option>
-								<option value="2016">2016</option>
-								<option value="2015">2015</option>
-								<option value="2014">2014</option>
-								<option value="2013">2013</option>
-								<option value="2012">2012</option>
-								<option value="2011">2011</option>
-								<option value="2010">2010</option>
-								<option value="2009">2009</option>
-								<option value="2008">2008</option>
-								<option value="2007">2007</option>
-								<option value="2006">2006</option>
-								<option value="2005">2005</option>
-								<option value="2004">2004</option>
-								<option value="2003">2003</option>
-								<option value="2002">2002</option>
-								<option value="2001">2001</option>
-								<option value="2000">2000</option>
-								<option value="1999">1999</option>
-								<option value="1998">1998</option>
-								<option value="1997">1997</option>
-								<option value="1996">1996</option>
-								<option value="1995">1995</option>
+								<?php
+								for ($i=1900; $i < 2017; $i++) {
+									if(isset($anioFecha)&&$anioFecha==$i){
+										echo "<option selected value=$i>$i</option>";
+									}else{
+										echo "<option value=$i>$i</option>";
+									}
+								}
+								 ?>
 							</select>
 						</div>
 					</div>
@@ -219,27 +179,34 @@ if($_POST){ //SI EXISTE UN POST
 					<div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="categorias[]" value="1"> Deportes
+								<?php
+								//esto es valido tanto como la opcion de Geografia
+								if(isset($categorias)&&in_array("1",$categorias)){
+									echo "<input type='checkbox' name='categorias[]' value='1' checked > Deportes";
+									} else {
+										echo "<input type='checkbox' name='categorias[]' value='1'> Deportes";
+									};
+								 ?>
 							</label>
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="categorias[]" value="2"> Geografía
+								<input type="checkbox" name="categorias[]" value="2" <?php echo (isset($categorias)&&in_array("2",$categorias))? "checked":''; ?> > Geografía
 							</label>
 						</div><div class="checkbox">
 							<label>
-								<input type="checkbox" name="categorias[]" value="3"> Historia
+								<input type="checkbox" name="categorias[]" value="3"<?php echo (isset($categorias)&&in_array("3",$categorias))? "checked":''; ?> > Historia
 							</label>
 						</div><div class="checkbox">
 							<label>
-								<input type="checkbox" name="categorias[]" value="4"> Ciencias
+								<input type="checkbox" name="categorias[]" value="4" <?php echo (isset($categorias)&&in_array("4",$categorias))? "checked":''; ?> > Ciencias
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="descripcion">Descripción</label>
-					<textarea id="descripcion" name="descripcion" class="form-control" rows="3"></textarea>
+					<textarea id="descripcion" name="descripcion" class="form-control" rows="3" value="<?php echo (!empty($descripcion))?$descripcion:''; ?>"></textarea>
 				</div>
 				<div class="checkbox">
 					<label>

@@ -35,4 +35,33 @@ function validar($datos){
 
   return $errores;
 }
+
+
+function registrarUsuario($datos){
+    $actuales= file_get_contents("datos.json");
+    $actuales= json_decode($actuales,true);
+    $datos["contrasena"]=password_hash($datos["contrasena"],PASSWORD_DEFAULT);
+    $actuales["usuarios"][]=$datos;
+    $nuevos= json_encode($actuales);
+    file_put_contents("datos.json",$nuevos);
+}
+  function login($datos){
+    $actuales= file_get_contents("datos.json");
+    $actuales= json_decode($actuales,true);
+    for ($i=0; $i < $actuales["usuarios"]; $i++) {
+      //explorar como seguir
+      echo $actuales["usuarios"][$i];
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
  ?>

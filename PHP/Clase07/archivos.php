@@ -22,6 +22,7 @@ if($openedfile){//SI EL ARCHIVO ESTA ABIERTO...
   fclose($openedfile);//CIERRO EL ARCHIVO
   }
 
+  
   echo "<br><br><h2>Punto 2c</h2>
   <p>Mostrar los contenidos del archivo texto.txt leyendo todo el archivo junto.</p>";
 if($openedfile){//SI EL ARCHIVO ESTA ABIERTO...
