@@ -9,7 +9,7 @@
     <form action="funciones.php" method="post" enctype="multipart/form-data">
       <!-- option -->
       <input type="hidden" name="MAX_FILE_SIZE" value="1024000">
-      
+
       <label for="nombre">Nombre</label><br>
       <input type="text" name="nombre" value="" id="nombre"><br><br>
       <label for="avatar">Avatar</label><br>

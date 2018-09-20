@@ -2,7 +2,7 @@
 <?php
 	require "funciones.php";
 	if ($_POST) {
-			login($_POST);
+		echo	validarLogin($_POST);
 	}
  ?>
 <html lang="en">
@@ -58,11 +58,11 @@
 						<label for="contrasena">Contraseña</label>
 						<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese Contraseña">
 					</div>
-				<input type="submit" name="" class="btn btn-info" value="Registrarme"/>
+				<input type="submit" name="" class="btn btn-info" value="INGRESAR"/>
 			</form>
 		</div>
 	</div>
-	<div class="text-center">&copy; <?php echo date('Y'); ?></div>
+	<div class="text-center">&copy;<?php echo date('Y'); ?></div>
 	<script src="assets/libs/jquery/jquery-1.11.1.min.js"></script>
 	<script src="assets/libs/bootstrap-3/js/bootstrap.min.js"></script>
 </body>

@@ -6,12 +6,18 @@
 	//4.Corro la funcion "validar" dentro del if($_POST) SOLO para ver los errores. La funcion validar solo quiere saber si hubo error, o sea, si esta mal el campo.
 	require "funciones.php";
 
-if($_POST){ //SI EXISTE UN POST, asigno el valor del campo a una $variable
-	$errores= validar($_POST);
+if($_POST){ // 1. SI EXISTE UN POST
+	// $errores = validarDatos($_POST);
+	// //SI NO HUBO ERRORES, REGISTRO AL USUARIO
+	// if (empty($errores)) {
+		registrarUsuario($_POST);
+	// }
+	// 2. asigno el valor del campo a una $variable
 	isset($_POST["nombre"])?$nombre=$_POST["nombre"]:"";
 	isset($_POST["apellido"])?$apellido=$_POST["apellido"]:"";
 	isset($_POST["username"])?$username=$_POST["username"]:"";
 	isset($_POST["email"])?$email=$_POST["email"]:"";
+	isset($_POST["email_confirm"])?$email_confirm=$_POST["email_confirm"]:"";
 	isset($_POST["genero"])?$genero=$_POST["genero"]:"";
 	isset($_POST["fnac_dia"])?$diaFecha=$_POST["fnac_dia"]:"";
 	isset($_POST["fnac_mes"])?$mesFecha=$_POST["fnac_mes"]:"";
@@ -21,7 +27,6 @@ if($_POST){ //SI EXISTE UN POST, asigno el valor del campo a una $variable
 	isset($_POST["contrasena"])?$contrasena=$_POST["contrasena"]:'';
 	isset($_POST["contrasena_confirm"])?$contrasena_confirm=$_POST["contrasena_confirm"]:'';
 	//	var_dump($errores);
-
 	};
  ?>
 <html lang="en">
@@ -150,7 +155,7 @@ if($_POST){ //SI EXISTE UN POST, asigno el valor del campo a una $variable
 							<select class="form-control" name="fnac_mes">
 								<?php
 								for ($i=1; $i < 13 ; $i++) {
-									if(isset($mesFecha)&&$mesFecha<$i){
+									if(isset($mesFecha)&&$mesFecha==$i){
 										echo "<option selected value=$i>$i</option>";
 									}else{
 										echo "<option value=$i>$i</option>";

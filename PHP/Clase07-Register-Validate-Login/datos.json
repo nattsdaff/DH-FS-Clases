@@ -78,6 +78,26 @@
       ],
       "descripcion": "",
       "terminos": "on"
+    },
+    {
+      "nombre": "Natalia",
+      "apellido": "daffunchio",
+      "username": "nattsdaff",
+      "email": "ndaff@gmail.com",
+      "email_confirm": "ndaff@gmail.com",
+      "contrasena": "$2y$10$qkoTRplqdRZ5OJ/JV6CF0Os/KseoCn3sphIsUn3C.jVQAlrHEoTEG",
+      "contrasena_confirm": "mariel",
+      "genero": "1",
+      "fnac_dia": "15",
+      "fnac_mes": "3",
+      "fnac_anio": "1974",
+      "categorias": [
+        "1",
+        "4"
+      ],
+      "descripcion": "a;skfj;s",
+      "terminos": "on",
+      "btn_submit": "Registrarme"
     }
   ]
 }
