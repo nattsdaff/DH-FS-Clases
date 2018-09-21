@@ -6,7 +6,7 @@
   </head>
   <body>
 <?php
-require "funciones.php";
+require "categorias-funciones.php";
 //  require("categorias.json");
 $url = "categorias.json";
 $archivojson = file_get_contents($url);
