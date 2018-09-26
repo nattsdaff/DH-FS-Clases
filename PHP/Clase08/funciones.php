@@ -1,5 +1,6 @@
 <?php
 function subirImagen(){
+
   //veo que no haya ningun error en la subida
   if($_FILES["avatar"]["error"] === UPLOAD_ERR_OK){
     echo "hola";
@@ -13,7 +14,7 @@ function subirImagen(){
     //Traigo la ruta del archivo que esta siendo ejecutado
     $miarchivo = dirname(__FILE__);
     //y le digo donde tiene que guardarlo
-    $miarchivo = $miarchivo . "/comprobantes/";
+    $miarchivo = $miarchivo . "/archivos/";
     $miarchivo = $miarchivo . "nombrequeelijoyo." . $extensiondelarchivo;
 
     move_uploaded_file($archivo, $miarchivo);

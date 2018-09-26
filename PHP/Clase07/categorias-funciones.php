@@ -1,5 +1,5 @@
 <?php
-function devolverJson($datos){
+function encodeJson($datos){
   var_dump($datos);
   $nuevosdatos = json_encode($datos);
 //  var_dump($nuevosdatos);
@@ -8,8 +8,8 @@ function devolverJson($datos){
   }
 
 function escribirJson($datos){
-  if(!file_exists("seleccionados.json")){
-    $openedfile = fopen("seleccionados.json","a+");
+  if(!file_exists("categorias-seleccionados.json")){
+    $openedfile = fopen("categorias-seleccionados.json","a+");
     $contenidojson = fwrite($openedfile, $datos);
     fclose($openedfile);
   }

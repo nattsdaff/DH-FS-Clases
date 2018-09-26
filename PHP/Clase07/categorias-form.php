@@ -7,27 +7,30 @@
   <body>
 <?php
 require "categorias-funciones.php";
-//  require("categorias.json");
+
 $url = "categorias.json";
 $archivojson = file_get_contents($url);
-//echo $archivojson;
+echo "<pre>";
+echo $archivojson;
+echo "<pre>";
 
 if($archivojson){
   $contenidojson = json_decode($archivojson, true);
   $categorias = $contenidojson['categorias'];
-  //var_dump($contenidojson["categorias"]);
+  echo "<pre>";
+  var_dump($categorias[0]['id']);
+  echo "<pre>";
 }
 if ($_POST) {
   isset($_POST['categorias'])?$categorias=$contenidojson['categorias']:'';
-  devolverJson($_POST);
+  encodeJson($_POST);
 }
-//var_dump (count($categorias));
 ?>
 
   <form class="" action="" method="post">
     <?php
     for ($i=0; $i < count($categorias); $i++) {
-      echo "<input type='checkbox' name='categorias[]' value='$i' >". $categorias[$i]['nombre'].'<br>';
+      echo "<input type='checkbox' name='categorias[$i]' value='$i' >". $categorias[$i]['nombre'].'<br>';
       }
     ?>
     <input type="submit" name="" value="Enviar">
