@@ -10,13 +10,13 @@ function subirAvatar($datos){
     $minuevoarchivo = dirname(__FILE__);
     $minuevoarchivo = $minuevoarchivo . "/subidos/";
     $minuevoarchivo = $minuevoarchivo . $nombredelarchivo. "." . $extensiondelarchivo;
-
+echo $minuevoarchivo;
     $errores=[];
     if (!file_exists($minuevoarchivo)){
       move_uploaded_file($archivotemporal, $minuevoarchivo);
     }else{
       $errores["duplicado"]="Este avatar ya existe";
-      echo $errores["duplicado"];
+//      echo $errores["duplicado"];
       return $errores;
     }
   }

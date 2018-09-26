@@ -1,7 +1,7 @@
 <?php
 require "funciones.php";
 if($_POST){ // 1. SI EXISTE UN $_POST
-  subirAvatar($_POST);
+  $errores = subirAvatar($_POST);
   }
 ?>
 
