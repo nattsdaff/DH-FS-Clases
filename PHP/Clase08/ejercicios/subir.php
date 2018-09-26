@@ -1,3 +1,10 @@
+<?php
+require "funciones.php";
+if($_POST){ // 1. SI EXISTE UN $_POST
+  subirAvatar($_POST);
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -6,7 +13,8 @@
   </head>
   <body>
     <h1>Subir archivo</h1>
-    <form action="funciones.php" method="post" enctype="multipart/form-data">
+
+    <form action="" method="post" enctype="multipart/form-data">
 
       <!-- OPTIONAL FOR FILES -->
       <input type="hidden" name="MAX_FILE_SIZE" value="1024000">
@@ -20,7 +28,10 @@
 
       <!-- $_FILES tendra toda la info del archivo donde el AVATAR (name del input) sera el $key del este array asociativo y dentro tendra ["avatar"]["error"], ["avatar"]["name"],["avatar"]["tmp_name"], ["avatar"]["size"] y ["avatar"]["type"]-->
       <input type="file" name="avatar" value="" id="avatar"><br><br>
-
+      <?php if (!empty($errores["duplicado"])){
+          echo '<p style="color:red;">'.$errores["duplicado"].'</p>';
+        }
+        ?>
       <!-- BOTON -->
       <input type="submit" name="" value="Enviar">
 
