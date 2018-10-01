@@ -5,13 +5,15 @@
 	//3.require archivo funciones donde voy a validar
 	//4.Corro la funcion "validar" dentro del if($_POST) SOLO para ver los errores. La funcion validar solo quiere saber si hubo error, o sea, si esta mal el campo.
 	require "funciones.php";
+	//array meses para que muestre nombres y no número de mes
+	$meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","Septiembre","octubre","Noviembre","Diciembre"];
 
 if($_POST){ // 1. SI EXISTE UN POST
-	// $errores = validarDatos($_POST);
 	// //SI NO HUBO ERRORES, REGISTRO AL USUARIO
 	// if (empty($errores)) {
-		registrarUsuario($_POST);
+	registrarUsuario($_POST);
 	// }
+
 	// 2. asigno el valor del campo a una $variable
 	isset($_POST["nombre"])?$nombre=$_POST["nombre"]:"";
 	isset($_POST["apellido"])?$apellido=$_POST["apellido"]:"";
@@ -23,11 +25,20 @@ if($_POST){ // 1. SI EXISTE UN POST
 	isset($_POST["fnac_mes"])?$mesFecha=$_POST["fnac_mes"]:"";
 	isset($_POST["fnac_anio"])?$anioFecha=$_POST["fnac_anio"]:"";
 	isset($_POST["categorias"])?$categorias=$_POST["categorias"]:"";
-	isset($_POST["terminos"])?$term=$_POST["terminos"]:"";
+	isset($_POST["terminos"])?$term=$_POST["terminos"]:'';
 	isset($_POST["contrasena"])?$contrasena=$_POST["contrasena"]:'';
 	isset($_POST["contrasena_confirm"])?$contrasena_confirm=$_POST["contrasena_confirm"]:'';
-	//	var_dump($errores);
-	};
+	isset($_POST["descripcion"])?$descripcion=$_POST["descripcion"]:"";
+
+	//El array de ERRORES se crea dentro de la funcion, si no lo paso a una variable (RETURN), ese array vive y muere ahí.
+	$errores = validarRegistro($_POST);
+
+	//Si no hay errores, entonces guardo el usuario
+	if (empty($errores)) {
+		guardarUsuario($_POST);
+		}
+	}
+
  ?>
 <html lang="en">
 <head>
@@ -76,36 +87,40 @@ if($_POST){ // 1. SI EXISTE UN POST
 						<label for="nombre">Nombre</label>
 						<input type="text" class="form-control" id="nombre" name="nombre"
 						value="<?php echo (!empty($nombre))?$nombre:''; ?>" placeholder="Ingrese Nombre">
+						<?php echo (isset($errores["nombre"]))?'<p style="color:red;">'.$errores["nombre"].'</p>':""; ?>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="apellido">Apellido</label>
-						<input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo (!empty($apellido))?$apellido:''; ?>" placeholder="Ingrese Apellido">
+						<input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo (!empty($apellido))?$apellido:''; ?>" placeholder="Ingrese Apellido"><?php echo (isset($errores["apellido"]))?'<p style="color:red;">'.$errores["apellido"].'</p>':""; ?>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="username">Nombre de Usuario</label>
-						<input type="text" class="form-control" id="username" name="username" value="<?php echo (!empty($username)?$username:"") ?>" placeholder="Ingrese Nombre de Usuario">
+						<input type="text" class="form-control" id="username" name="username" value="<?php echo (!empty($username)?$username:"") ?>" placeholder="Ingrese Nombre de Usuario"><?php echo (isset($errores["username"]))?'<p style="color:red;">'.$errores["username"].'</p>':""; ?>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="email">Email</label>
 						<input type="text" class="form-control" id="email" name="email" value="<?php echo(!empty($email))?$email:"" ?>" placeholder="Ingrese Email">
+						<?php echo (isset($errores["email"]))?'<p style="color:red;">'.$errores["email"].'</p>':""; ?>
+							<?php echo (isset($errores["email_conf"]))?'<p style="color:red;">'.$errores["email_conf"].'</p>':""; ?>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="email-confirm">Confirmar Email</label>
-						<input type="text" class="form-control" id="email-confirm" name="email_confirm" value="<?php echo (!empty($email_confirm))?$email_confirm:"" ?>" placeholder="Ingrese Confirmación Email">
+						<input type="text" class="form-control" id="email-confirm" name="email_confirm" value="<?php echo (!empty($email_confirm))?$email_confirm:"" ?>" placeholder="Ingrese Confirmación Email"><?php echo (isset($errores["email_conf"]))?'<p style="color:red;">'.$errores["email_conf"].'</p>':""; ?>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="contrasena">Contraseña</label>
-						<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese Contraseña">
+						<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese Contraseña"><?php echo (isset($errores["contrasena"]))?'<p style="color:red;">'.$errores["contrasena"].'</p>':""; ?>
+						<?php echo (isset($errores["contrasena_conf"]))?'<p style="color:red;">'.$errores["contrasena_conf"].'</p>':""; ?>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="contrasena-confirm">Confirmar Contraseña</label>
-						<input type="password" class="form-control" id="contrasena-confirm" name="contrasena_confirm" placeholder="Ingrese Confirmación Contraseña">
+						<input type="password" class="form-control" id="contrasena-confirm" name="contrasena_confirm" placeholder="Ingrese Confirmación Contraseña"><?php echo (isset($errores["contrasena_conf"]))?'<p style="color:red;">'.$errores["contrasena_conf"].'</p>':""; ?>
 					</div>
 				</div>
 				<div class="form-group">

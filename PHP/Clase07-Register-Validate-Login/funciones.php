@@ -1,5 +1,5 @@
 <?php
-function validarDatos($datos){ // validar recibe el POST o el GET como si fuera datos
+function validarRegistro($datos){ // validar recibe el POST o el GET como si fuera datos
   //VOY A BUSCAR LO QUE ESTA MAL, NO LO QUE ESTA BIEN
   // 1. Hago un array de error y lo lleno con todo lo que esta mal.
   $errores = [];

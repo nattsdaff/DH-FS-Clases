@@ -1,25 +1,36 @@
-<!DOCTYPE html>
 <?php
-	require "funciones.php";
-	if ($_POST) {
-		$errores= validar($_POST);
-		if (empty($errores)) {
-			registrarUsuario($_POST);
-		}
-		isset($_POST["nombre"])?$nombre=$_POST["nombre"]:'';
-		isset($_POST["apellido"])?$apellido=$_POST["apellido"]:'';
-		isset($_POST["username"])?$username=$_POST["username"]:'';
-		isset($_POST["email"])?$email=$_POST["email"]:'';
-		isset($_POST["email_confirm"])?$email_confirm=$_POST["email_confirm"]:'';
-		isset($_POST["genero"])?$sexo=$_POST["genero"]:'';
-		isset($_POST["fnac_dia"])?$diaFecha=$_POST["fnac_dia"]:'';
-		isset($_POST["fnac_mes"])?$mesFecha=$_POST["fnac_mes"]:'';
-		isset($_POST["fnac_anio"])?$anioFecha=$_POST["fnac_anio"]:'';
-		isset($_POST["categorias"])?$categorias=$_POST["categorias"]:'';
-		isset($_POST["terminos"])?$terminos=$_POST["terminos"]:'';
-		//var_dump($errores);
+require "functions.php";
+$meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","Septiembre","octubre","Noviembre","Diciembre"];
+
+if ($_POST) {
+	$nombre=$_POST["nombre"];
+	$apellido=$_POST["apellido"];
+	$usuario=$_POST["username"];
+	$email=$_POST["email"];
+	$dia= $_POST["fnac_dia"];
+	$mes= $_POST["fnac_mes"];
+	$anio= $_POST["fnac_anio"];
+	if (isset($_POST["categorias"])) {
+		$categorias= $_POST["categorias"];
+	}else {
+		$categorias= [];
 	}
+	if (isset($_POST["genero"])) {
+		$genero= $_POST["genero"];
+	}else {
+		$genero= [];
+	}
+	$descripcion= $_POST["descripcion"];
+	//
+	$errores=validacionRegistro($_POST);
+	//var_dump($errores);
+	if (empty($errores)) {
+		guardarUsuario($_POST);
+	}
+
+}
  ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -65,62 +76,69 @@
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="nombre">Nombre</label>
-						<input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo (!empty($nombre))?$nombre:''; ?>" placeholder="Ingrese Nombre">
+						<input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo (!empty($nombre))?$nombre:""; ?>" placeholder="Ingrese Nombre">
+						<?php echo (isset($errores["nombre"]))?'<p style="color:red;">'.$errores["nombre"].'</p>':""; ?>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="apellido">Apellido</label>
-						<input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo (!empty($apellido))?$apellido:''; ?>" placeholder="Ingrese Apellido">
+						<input type="text" class="form-control" id="apellido" name="apellido" value="<?php echo (!empty($apellido))?$apellido:""; ?>" placeholder="Ingrese Apellido">
+						<?php if (isset($errores["apellido"])) {
+							//ejemplo toia
+							echo '<p style="color:red;">'.$errores["apellido"].'</p>';
+						} ?>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="username">Nombre de Usuario</label>
-						<input type="text" class="form-control" id="username" name="username" value="<?php echo (!empty($username))?$username:''; ?>" placeholder="Ingrese Nombre de Usuario">
+						<input type="text" class="form-control" id="username" name="username" value="<?php echo (!empty($usuario))?$usuario:""; ?>" placeholder="Ingrese Nombre de Usuario">
+						<?php echo (isset($errores["username"]))?'<p style="color:red;">'.$errores["username"].'</p>':""; ?>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="email">Email</label>
-						<input type="text" class="form-control" id="email" name="email" value="<?php echo (!empty($email))?$email:''; ?>" placeholder="Ingrese Email">
+						<input type="text" class="form-control" id="email" name="email" value="<?php echo (!empty($email))?$email:""; ?>" placeholder="Ingrese Email">
+						<?php echo (isset($errores["email"]))?'<p style="color:red;">'.$errores["email"].'</p>':""; ?>
+							<?php echo (isset($errores["email_conf"]))?'<p style="color:red;">'.$errores["email_conf"].'</p>':""; ?>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="email-confirm">Confirmar Email</label>
 						<input type="text" class="form-control" id="email-confirm" name="email_confirm" value="" placeholder="Ingrese Confirmación Email">
+							<?php echo (isset($errores["email_conf"]))?'<p style="color:red;">'.$errores["email_conf"].'</p>':""; ?>
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="contrasena">Contraseña</label>
 						<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese Contraseña">
+						<?php echo (isset($errores["contrasena"]))?'<p style="color:red;">'.$errores["contrasena"].'</p>':""; ?>
+						<?php echo (isset($errores["contrasena_conf"]))?'<p style="color:red;">'.$errores["contrasena_conf"].'</p>':""; ?>
 					</div>
 					<div class="form-group col-sm-6">
 						<label for="contrasena-confirm">Confirmar Contraseña</label>
 						<input type="password" class="form-control" id="contrasena-confirm" name="contrasena_confirm" placeholder="Ingrese Confirmación Contraseña">
+						<?php echo (isset($errores["contrasena_conf"]))?'<p style="color:red;">'.$errores["contrasena_conf"].'</p>':""; ?>
 					</div>
 				</div>
-				<!--<div class="form-group">
+				<div class="form-group">
 					<label>Avatar</label>
 					<div>
 						<input type="file" name="avatar"/>
 					</div>
-				</div> -->
+				</div>
 				<div class="form-group">
-					<label>Sexo:</label>
+					<label>Sexo</label>
 					<div>
 						<label class="radio-inline">
-							<input type="radio" name="genero" id="genero_masculino" <?php if (isset($sexo)&&$sexo==0) {
+							<input type="radio" name="genero" id="genero_masculino" <?php if (isset($genero)&&$genero==0){
 								echo "checked";
 							} ?> value="0"> Masculino
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="genero" id="genero_femenino" <?php if(isset($sexo)&&$sexo==1) {
-								echo "checked";
-							} ?> value="1"> Femenino
-						</label>
-						<label class="radio-inline">
-							<input type="radio" name="genero" id="genero_femenino" <?php if (isset($sexo)&&$sexo==2) {
-								echo "checked";
-							} ?> value="2"> Otre
+							<input type="radio" name="genero" id="genero_femenino" <?php if (isset($genero)&&$genero==1){
+							echo "checked";
+						} ?> value="1"> Femenino
 						</label>
 					</div>
 				</div>
@@ -129,35 +147,38 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<select class="form-control" name="fnac_dia">
-							<?php for ($i=1; $i < 32 ; $i++) {
-								if (isset($diaFecha)&&$diaFecha==$i) {
+							<?php for ($i=1; $i <= 31; $i++) {
+								if (isset($dia)&&$dia==$i) {
 									echo "<option selected value=$i>$i</option>";
 								}else {
-								echo "<option value=$i>$i</option>";
+									echo "<option value=$i>$i</option>";
 								}
+
 							} ?>
 							</select>
 						</div>
 						<div class="col-sm-4">
 							<select class="form-control" name="fnac_mes">
-								<?php for ($i=1; $i < 13; $i++) {
-									if(isset($mesFecha)&&$mesFecha==$i){
-										echo "<option selected value=$i>$i</option>";
-									}else{
-										echo "<option value=$i>$i</option>";
-									}
-								} ?>
+							<?php for ($i=0; $i < count($meses); $i++) {
+								if (isset($mes)&&$mes==($i+1)) {
+										echo "<option selected value=".($i+1).">$meses[$i]</option>";
+								}else {
+										echo "<option value=".($i+1).">$meses[$i]</option>";
+								}
+
+							} ?>
 							</select>
 						</div>
 						<div class="col-sm-4">
 							<select class="form-control" name="fnac_anio">
-								<?php for ($i=1900; $i < 2010 ; $i++) {
-									if (isset($anioFecha)&&$anioFecha==$i) {
-										echo "<option selected value=$i>$i</option>";
-									}else {
+								<?php for ($i=1960; $i < 2016; $i++) {
+									if (isset($anio)&&$anio==$i) {
+									echo "<option selected value=$i>$i</option>";
+								}else {
 									echo "<option value=$i>$i</option>";
-									}
+								}
 								} ?>
+
 							</select>
 						</div>
 					</div>
@@ -182,29 +203,30 @@
 							<label>
 								<input type="checkbox" name="categorias[]" <?php if (isset($categorias)&&in_array("3",$categorias)) {
 									echo "checked";
-								}?> value="3"> Historia
+								} ?> value="3"> Historia
 							</label>
 						</div><div class="checkbox">
-							<label><?php
-									if (isset($categorias)&&in_array("4",$categorias)) {
-										echo "<input type='checkbox' name='categorias[]' 'checked' value="4">Ciencias";
-									}else{
-										echo "<input type='checkbox' name='categorias[]' value="4">Ciencias";
-									}
+							<label>
+								<input type="checkbox" name="categorias[]" <?php if (isset($categorias)&&in_array("4",$categorias)) {
+									echo "checked";
+								} ?> value="4"> Ciencias
 							</label>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="descripcion">Descripción</label>
-					<textarea id="descripcion" name="descripcion" class="form-control" rows="3"></textarea>
+					<textarea id="descripcion" name="descripcion" class="form-control" rows="3"><?php
+						echo (isset($descripcion))?$descripcion:"";
+					 ?></textarea>
 				</div>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" id="chk-terminos" name="terminos"> Acepto los términos y condiciones
 					</label>
+					<?php echo (isset($errores["terminos"]))?'<p style="color:red;">'.$errores["terminos"].'</p>':""; ?>
 				</div>
-				<input type="submit" name="" class="btn btn-info" value="Registrarme"/>
+				<input type="submit" class="btn btn-info" value="Registrarme"/>
 			</form>
 		</div>
 	</div>
