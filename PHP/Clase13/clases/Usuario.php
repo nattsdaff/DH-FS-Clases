@@ -1,5 +1,5 @@
 <?php
-
+abstract clss
 class Usuario
 {
   public $nombre;
@@ -9,11 +9,16 @@ class Usuario
   private $password;
 
   public function __construct($nombre, $birthdate, $email, $edad, $password){
-    $this->setName($nombre);
-    $this->setBirthDate($birthdate);
-    $this->setEmail($email);
-    $this->setEdad($edad);
-    $this->setPassword($password);
+    $this->nombre = $nombre;
+    $this->birthdate= $birthdate;
+    $this->email = $email;
+    $this->edad = $edad;
+    $this->password = $password;
+    // $this->setName($nombre);
+    // $this->setBirthDate($birthdate);
+    // $this->setEmail($email);
+    // $this->setEdad($edad);
+    // $this->password = $this->setPassword($password);
   }
 
   //getter y setter me permite cambiar aunque sea privado, desde la clase
@@ -66,10 +71,11 @@ class Usuario
   public function saludar(){
     echo "Hola " . $this->nombre. "<br>";
   }
-  public function encriptarPassword($password){
-    $this->password = password_hash($password, PASSWORD_DEFAULT);
-    return $this;
+  private function encriptarPassword($password)
+  {
+    return password_hash($password, PASSWORD_DEFAULT);
   }
+
   public function setPassword($password){
     if($password == ''){
       echo "Contraseña no puede estar vacía";

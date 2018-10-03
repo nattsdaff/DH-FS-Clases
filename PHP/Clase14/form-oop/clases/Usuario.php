@@ -7,8 +7,8 @@ class Usuario
 
   public function __construct($nombre, $username){
 //  public function __construct($nombre, $username, $email, $emailConfirm, $password, $passwordConfirm, $fechaNac, $nacionalidad, $sexo, $intereses, $avatar, $descripcion){
-    $this->setNombre($nombre);
-    $this->setNombreUsuario($username);
+    $this->nombre = $nombre;
+    $this->username = $username;
   }
   public function setNombre($nombre){
     $this->nombre = $nombre;
