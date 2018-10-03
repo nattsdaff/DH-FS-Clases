@@ -15,7 +15,7 @@ class Mascota
 
 $mascota1 = new Mascota("freya","gato","negro");
 $mascota2 = new Mascota("odin","perro","negro");
-$mascota1->setNombre("Juano")->setColor("azul");
+//$mascota1->setNombre("Juano")->setColor("azul");
 
 echo "<pre>";
 var_dump($mascota1);
