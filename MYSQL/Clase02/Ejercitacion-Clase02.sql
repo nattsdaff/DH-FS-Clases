@@ -1,0 +1,25 @@
+CREATE TABLE Productora (
+	ID int UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100) NOT NULL,
+    Ranking int UNSIGNED UNIQUE,
+    Activo VARCHAR(10) DEFAULT "activo",
+    Creacion DATETIME NOT NULL
+);
+ALTER TABLE Productora RENAME TO productora;
+
+DROP TABLE Productora;
+
+CREATE TABLE productora(
+	ID INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(200) NOT NULL,
+    Ranking int UNSIGNED UNIQUE KEY,
+    Activo VARCHAR(10) DEFAULT "true",
+    Creacion DATETIME NOT NULL
+);
+
+CREATE TABLE prueba(
+	ID INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    Prueba TEXT
+);
+DROP TABLE prueba;
+
