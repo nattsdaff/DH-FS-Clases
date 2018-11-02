@@ -28,3 +28,13 @@ class JSONDB
         file_put_contents("datos.json",$usuarioJson);
     }
 }
+
+
+
+
+
+
+
+
+
+
